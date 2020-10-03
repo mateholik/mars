@@ -1,2 +1,174 @@
+html {
+  font-size: 62.5%; }
+
 body {
-  background: pink; }
+  font-size: 1.6rem;
+  font-family: "Jura", sans-serif;
+  line-height: 1.3;
+  color: #b1b1b1; }
+
+strong {
+  font-weight: 700; }
+
+main {
+  height: 100vh;
+  width: 100%;
+  background-image: url(../assets/img/mars-bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden; }
+
+.container {
+  height: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column; }
+
+.top {
+  height: 80%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center; }
+
+.current {
+  max-width: 60rem;
+  margin: 0 auto;
+  background: #00000087;
+  padding: 5rem; }
+  .current__title {
+    font-size: 2.4rem;
+    color: #bc502c;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 3rem; }
+  .current__row {
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 4rem; }
+  .current__col {
+    -ms-flex: 1;
+        flex: 1;
+    padding: 0 1rem; }
+    .current__col:not(:last-child) {
+      border-right: 2px solid #bc502c; }
+    .current__col--wind {
+      display: -ms-flexbox;
+      display: flex; }
+  .current__sol {
+    font-weight: 700;
+    font-size: 4.4rem;
+    color: #fff;
+    line-height: 1; }
+  .current__dates {
+    font-size: 2.6rem; }
+  .current__temp {
+    font-weight: 700;
+    font-size: 2.4rem;
+    color: #fff; }
+  .current__temp-simple {
+    font-size: 1.8rem; }
+  .current__text {
+    color: #dedcdc; }
+  .current__compass {
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+        justify-content: center;
+    -ms-flex-align: center;
+        align-items: center;
+    margin-right: 1.5rem; }
+    .current__compass-arrow {
+      --direction: 0deg;
+      --size: 1rem;
+      height: calc(var(--size) * 3);
+      width: var(--size);
+      background: #bc502c;
+      -webkit-clip-path: polygon(50% 0, 0% 100%, 100% 100%);
+              clip-path: polygon(50% 0, 0% 100%, 100% 100%);
+      transform: translateY(-50%) rotate(var(--direction));
+      transform-origin: bottom center;
+      transition: transform 500ms ease; }
+    .current__compass-text {
+      font-weight: 700;
+      font-size: 2.4rem; }
+      .current__compass-text .soft {
+        font-size: 1.8rem; }
+      .current__compass-text .title {
+        color: #fff; }
+
+.bottom {
+  position: relative;
+  transform: translateY(70%);
+  transition: 0.2s ease; }
+  .bottom-open {
+    transform: translateY(0); }
+
+.previous {
+  background: #ffffffc7;
+  color: #000;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 2rem; }
+  .previous__open {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -99%);
+    width: 10rem;
+    background: #ffffffc7;
+    text-align: center;
+    color: #bc502c;
+    margin: 0 auto;
+    -webkit-clip-path: polygon(50% 0, 0 100%, 100% 100%);
+            clip-path: polygon(50% 0, 0 100%, 100% 100%);
+    line-height: 1;
+    font-size: 2rem;
+    padding: 0.5rem 0;
+    cursor: pointer; }
+    .previous__open span {
+      display: block;
+      transition: 0.2s ease; }
+    .previous__open-rotate {
+      transform: rotate(180deg); }
+  .previous__title {
+    text-align: center;
+    font-size: 2.4rem;
+    color: #bc502c;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 2rem; }
+  .previous__wrap {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+        justify-content: space-between; }
+    .previous__wrap .block {
+      -ms-flex: 1;
+          flex: 1;
+      padding: 0 1rem;
+      border-left: 1px solid #bc502c; }
+      .previous__wrap .block__sol {
+        font-weight: 700;
+        font-size: 2rem; }
+      .previous__wrap .block__date {
+        color: #8e8c8c; }
+      .previous__wrap .block__temp {
+        margin-bottom: 2rem; }
+      .previous__wrap .block__btn {
+        background: #bc502c;
+        color: #fff;
+        padding: 0.3rem 1rem;
+        display: inline-block;
+        border-radius: 0.5rem;
+        text-transform: capitalize;
+        cursor: pointer; }
+        .previous__wrap .block__btn:hover {
+          background: #a03a18; }

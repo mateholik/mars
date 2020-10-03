@@ -1,3 +1,192 @@
+$accent-color: #bc502c;
+$headers-color: #fff;
+
+html {
+  font-size: 62.5%;
+}
 body {
-  background: pink
+  font-size: 1.6rem;
+  font-family: "Jura", sans-serif;
+  line-height: 1.3;
+  color: #b1b1b1;
+}
+strong {
+  font-weight: 700;
+}
+main {
+  height: 100vh;
+  width: 100%;
+  background-image: url(../assets/img/mars-bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.top {
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.current {
+  max-width: 60rem;
+  margin: 0 auto;
+  background: #00000087;
+  padding: 5rem;
+  &__title {
+    font-size: 2.4rem;
+    color: $accent-color;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+  }
+  &__row {
+    display: flex;
+    margin-bottom: 4rem;
+  }
+  &__col {
+    flex: 1;
+    padding: 0 1rem;
+    &:not(:last-child) {
+      border-right: 2px solid $accent-color;
+    }
+    &--wind {
+      display: flex;
+    }
+  }
+  &__sol {
+    font-weight: 700;
+    font-size: 4.4rem;
+    color: $headers-color;
+    line-height: 1;
+  }
+  &__dates {
+    font-size: 2.6rem;
+  }
+  &__temp {
+    font-weight: 700;
+    font-size: 2.4rem;
+    color: $headers-color;
+  }
+  &__temp-simple {
+    font-size: 1.8rem;
+  }
+  &__text {
+    color: #dedcdc;
+  }
+  &__compass {
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1.5rem;
+    &-arrow {
+      --direction: 0deg;
+      --size: 1rem;
+      height: calc(var(--size) * 3);
+      width: var(--size);
+      background: $accent-color;
+      clip-path: polygon(50% 0, 0% 100%, 100% 100%);
+      transform: translateY(-50%) rotate(var(--direction));
+      transform-origin: bottom center;
+      transition: transform 500ms ease;
+    }
+    &-text {
+      font-weight: 700;
+      font-size: 2.4rem;
+      .soft {
+        font-size: 1.8rem;
+      }
+      .title {
+        color: $headers-color;
+      }
+    }
+  }
+}
+
+.bottom {
+  position: relative;
+  transform: translateY(70%);
+  transition: 0.2s ease;
+  &-open {
+    transform: translateY(0);
+  }
+}
+
+.previous {
+  background: #ffffffc7;
+  color: #000;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 2rem;
+  &__open {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -99%);
+    width: 10rem;
+    background: #ffffffc7;
+    text-align: center;
+    color: $accent-color;
+    margin: 0 auto;
+    clip-path: polygon(50% 0, 0 100%, 100% 100%);
+    line-height: 1;
+    font-size: 2rem;
+    padding: 0.5rem 0;
+    cursor: pointer;
+    span {
+      display: block;
+      transition: 0.2s ease;
+    }
+    &-rotate {
+      transform: rotate(180deg);
+    }
+  }
+  &__title {
+    text-align: center;
+    font-size: 2.4rem;
+    color: $accent-color;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+  &__wrap {
+    display: flex;
+    justify-content: space-between;
+    .block {
+      flex: 1;
+      padding: 0 1rem;
+      border-left: 1px solid $accent-color;
+      &__sol {
+        font-weight: 700;
+        font-size: 2rem;
+      }
+      &__date {
+        color: #8e8c8c;
+      }
+      &__temp {
+        margin-bottom: 2rem;
+      }
+      &__btn {
+        background: $accent-color;
+        color: #fff;
+        padding: 0.3rem 1rem;
+        display: inline-block;
+        border-radius: 0.5rem;
+        text-transform: capitalize;
+        cursor: pointer;
+        &:hover {
+          background: #a03a18;
+        }
+      }
+    }
+  }
 }
