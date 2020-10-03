@@ -26,8 +26,8 @@
               <div class="current__col">
                 <h2 class="current__temp">Temperature</h2>
                 <p class="current__temp-simple">
-                  High: <span id="maxTemp"></span> °C <br />
-                  Low: <span id="minTemp"></span> °C
+                  High: <span id="maxTemp"></span> °<span data-temp-unit></span> <br />
+                  Low: <span id="minTemp"></span> °<span data-temp-unit></span>
                 </p>
               </div>
               <div class="current__col current__col--wind">
@@ -39,7 +39,7 @@
                 </div>
                 <div class="current__compass-text">
                   <p class="title">Wind</p>
-                  <p class="soft"><span id="windSpeed"></span> kph</p>
+                  <p class="soft"><span id="windSpeed"></span> <span data-speed-unit></span></p>
                   <p class="soft"><span id="windDirectionCardinal"></span></p>
                 </div>
               </div>
@@ -52,10 +52,21 @@
               equivalent to approximately 687 Earth days. <br /><br />
               Mars's atmosphere is about 100 times <strong>thinner</strong> than
               Earth's, so Mars <strong>can't retain</strong> any heat energy. On
-              average, the temperature <strong>-60 </strong>°C. Coldest
-              <strong>-125 </strong>°C. Warmest
-              <strong>+20 </strong>°C
+              average, the temperature <span data-text-num>-60</span> °<span data-temp-unit></span>. Coldest
+              <span data-text-num>-125</span> °<span data-temp-unit></span>. Warmest
+              <span data-text-num>20</span> °<span data-temp-unit></span>
             </div>
+
+            <div class="unit">
+              <label for="cel">°C</label>
+              <input type="radio" id="cel" name="unit" checked>
+              <!-- when unit__toggle is clicked
+                   checkbox needs to change -->
+              <button id="unit-toggle" class="unit__toggle" data-unit-toggle></button>
+              <label for="fah">°F</label>
+              <input type="radio" id="fah" name="unit">
+            </div> 
+            
           </div>
         </div>
         <div id="bottom" class="bottom">
@@ -68,8 +79,11 @@
                   <p class="block__sol">Sol <span id="previous-sol"></span></p>
                 <p class="block__date"><span id="previous-date"></p>
                 <p class="block__temp">
-                  High: <span id="previous-maxTemp"></span> °C <br />
-                  Low: <span id="previous-minTemp"></span> °C
+                  High: <span id="previous-maxTemp"></span>
+                   °<span data-temp-unit></span>
+                    <br />
+                  Low: <span id="previous-minTemp"></span>
+                   °<span data-temp-unit></span>
                 </p>
                 <div id="previous-button" class="block__btn">more</div>
                 </div>

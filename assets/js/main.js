@@ -21,11 +21,35 @@ const previousSol = document.getElementById("previous-sol");
 const previousSolsTemplate = document.getElementById("previous-sols-template");
 const previousSolsContainer = document.getElementById("previous-sols");
 
+const unitToggle = document.getElementById("unit-toggle");
+const metricRadio = document.getElementById("cel");
+const imperialRadio = document.getElementById("fah");
+
 let selectedSolIndex;
 getWeather().then((sols) => {
   selectedSolIndex = sols.length - 1;
   displaySelectedSol(sols);
   displayPreviousSols(sols);
+  updateUnits();
+
+  unitToggle.addEventListener("click", () => {
+    let metricUnits = !isMetric();
+    metricRadio.checked = metricUnits;
+    imperialRadio.checked = !metricUnits;
+    displaySelectedSol(sols);
+    displayPreviousSols(sols);
+    updateUnits();
+  });
+  metricRadio.addEventListener("change", () => {
+    displaySelectedSol(sols);
+    displayPreviousSols(sols);
+    updateUnits();
+  });
+  imperialRadio.addEventListener("change", () => {
+    displaySelectedSol(sols);
+    displayPreviousSols(sols);
+    updateUnits();
+  });
 });
 
 function displaySelectedSol(sols) {
@@ -45,8 +69,6 @@ function displaySelectedSol(sols) {
 
 function displayPreviousSols(sols) {
   previousSolsContainer.innerHTML = "";
-  console.log(previousSolsContainer);
-  console.log(previousSolsTemplate);
   sols.forEach((solData, index) => {
     const solContainer = previousSolsTemplate.content.cloneNode(true);
     solContainer.getElementById("previous-date").innerHTML = formatDate(
@@ -74,11 +96,19 @@ function formatDate(date) {
 }
 
 function formatTemperature(temperature) {
-  return Math.round(temperature);
+  let returnTemp = temperature;
+  if (!isMetric()) {
+    returnTemp = temperature * (9 / 5) + 32;
+  }
+  return Math.round(returnTemp);
 }
 
 function formatSpeed(speed) {
-  return Math.round(speed);
+  let returnSpeed = speed;
+  if (!isMetric()) {
+    returnSpeed = speed / 1.609;
+  }
+  return Math.round(returnSpeed);
 }
 
 function getWeather() {
@@ -100,7 +130,36 @@ function getWeather() {
     });
 }
 
-//
+function updateUnits() {
+  const speedUnit = document.querySelectorAll("[data-speed-unit]");
+  const tempUnit = document.querySelectorAll("[data-temp-unit]");
+  speedUnit.forEach((unit) => {
+    unit.innerHTML = isMetric() ? "kph" : "mph";
+  });
+  tempUnit.forEach((unit) => {
+    unit.innerHTML = isMetric() ? "C" : "F";
+  });
+  updateTextNums();
+}
+
+function updateTextNums() {
+  const textNums = document.querySelectorAll("[data-text-num]");
+  const staticNums = [-60, -125, 20];
+  textNums.forEach((num, i) => {
+    let returnNum = num.innerHTML;
+    if (!isMetric()) {
+      returnNum = num.innerHTML * (9 / 5) + 32;
+    } else {
+      returnNum = staticNums[i];
+    }
+    num.innerHTML = Math.round(returnNum);
+  });
+}
+
+function isMetric() {
+  return metricRadio.checked;
+}
+
 document.getElementById("open").addEventListener("click", function () {
   document.getElementById("bottom").classList.toggle("bottom-open");
   document
