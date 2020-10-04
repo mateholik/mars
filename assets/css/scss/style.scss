@@ -33,29 +33,50 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  @media (max-width: 600px) {
+    height: auto;
+  }
 }
 
 .current {
   max-width: 60rem;
   margin: 0 auto;
   background: #00000087;
-  padding: 5rem;
+  padding: 3rem;
   &__title {
-    font-size: 2.4rem;
+    font-size: 2.8rem;
     color: $accent-color;
     font-weight: 600;
     text-transform: uppercase;
-    margin-bottom: 3rem;
+    margin-bottom: 2.4rem;
+    text-align: center;
+    @media (max-width: 600px) {
+      color: #ffd5d5;
+    }
   }
   &__row {
     display: flex;
     margin-bottom: 4rem;
+    @media (max-width: 600px) {
+      display: block;
+      margin-bottom: 1rem;
+    }
   }
   &__col {
     flex: 1;
     padding: 0 1rem;
     &:not(:last-child) {
       border-right: 2px solid $accent-color;
+    }
+    @media (max-width: 600px) {
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      &:not(:last-child) {
+        border-right: none;
+      }
+      &:not(:last-child) {
+        border-bottom: 2px solid $accent-color;
+      }
     }
     &--wind {
       display: flex;
@@ -80,6 +101,11 @@ main {
   }
   &__text {
     color: #dedcdc;
+    .mobile-hide {
+      @media (max-width: 600px) {
+        display: none;
+      }
+    }
   }
   &__compass {
     width: 7rem;
@@ -114,10 +140,13 @@ main {
   }
   .unit {
     color: $headers-color;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     opacity: 0.7;
     transition: opacity 275ms linear;
+    &-wrap {
+      text-align: right;
+    }
     &:hover {
       opacity: 1;
     }
@@ -153,11 +182,27 @@ main {
 }
 
 .bottom {
-  position: relative;
-  transform: translateY(70%);
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 70%);
   transition: 0.2s ease;
+  width: 100%;
+  @media (max-width: 950px) {
+    transform: translate(-50%, 80%);
+  }
+  @media (max-width: 600px) {
+    transform: translate(-50%, 90%);
+  }
+  &-wrap {
+    position: relative;
+    height: 20%;
+    max-width: 1224px;
+    width: 100%;
+    margin: 0 auto;
+  }
   &-open {
-    transform: translateY(0);
+    transform: translate(-50%, 0);
   }
 }
 
@@ -167,6 +212,9 @@ main {
   max-width: 1240px;
   margin: 0 auto;
   padding: 2rem;
+  @media (max-width: 950px) {
+    background: #ffffffe8;
+  }
   &__open {
     position: absolute;
     left: 50%;
@@ -181,6 +229,9 @@ main {
     font-size: 2rem;
     padding: 0.5rem 0;
     cursor: pointer;
+    @media (max-width: 950px) {
+      background: #ffffffe8;
+    }
     span {
       display: block;
       transition: 0.2s ease;
@@ -190,20 +241,39 @@ main {
     }
   }
   &__title {
+    transition: 1s ease;
     text-align: center;
     font-size: 2.4rem;
     color: $accent-color;
     font-weight: 600;
     text-transform: uppercase;
     margin-bottom: 2rem;
+    height: 3rem;
+    opacity: 1;
+    cursor: pointer;
+  }
+  .hide {
+    height: 0;
+    margin-bottom: 0;
+    opacity: 0;
   }
   &__wrap {
     display: flex;
     justify-content: space-between;
+    @media (max-width: 950px) {
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
     .block {
       flex: 1;
       padding: 0 1rem;
       border-left: 1px solid $accent-color;
+      @media (max-width: 950px) {
+        flex: unset;
+        min-width: 11rem;
+        margin-bottom: 1rem;
+        border-left: none;
+      }
       &__sol {
         font-weight: 700;
         font-size: 2rem;
@@ -213,6 +283,9 @@ main {
       }
       &__temp {
         margin-bottom: 2rem;
+        @media (max-width: 950px) {
+          margin-bottom: 1rem;
+        }
       }
       &__btn {
         background: $accent-color;
@@ -227,5 +300,44 @@ main {
         }
       }
     }
+  }
+}
+
+.loader-wrap {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black;
+  z-index: 999;
+}
+.loader {
+  border: 8px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 8px solid $accent-color;
+  width: 60px;
+  height: 60px;
+  -webkit-animation: spin 0.5s linear infinite; /* Safari */
+  animation: spin 0.5s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

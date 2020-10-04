@@ -8,11 +8,15 @@
       href="https://fonts.googleapis.com/css2?family=Jura:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="build/style.min.css" />
     <script src="build/main.js" defer></script>
   </head>
 
   <body>
+    <div id="loader" class="loader-wrap">
+      <div class="loader"></div>
+    </div>
     <main>
       <div class="container">
         <div class="top">
@@ -46,48 +50,53 @@
             </div>
             <div class="current__text">
               <strong>Sol</strong> is a solar day on Mars -
-              <strong>Mars day</strong>. Mars sol is approximately 24 hours and 40 minutes
+              <strong>Mars day</strong>. Mars sol is approximately 39 minutes
               <strong>longer than an Earth day</strong>. A
               <strong>Martian year</strong> is approximately 668 sols,
               equivalent to approximately 687 Earth days. <br /><br />
-              Mars's atmosphere is about 100 times <strong>thinner</strong> than
-              Earth's, so Mars <strong>can't retain</strong> any heat energy. On
-              average, the temperature <span data-text-num>-60</span> °<span data-temp-unit></span>. Coldest
-              <span data-text-num>-125</span> °<span data-temp-unit></span>. Warmest
-              <span data-text-num>20</span> °<span data-temp-unit></span>
+              <div class="mobile-hide">
+                Mars's atmosphere is about 100 times <strong>thinner</strong> than
+              Earth's, so Mars <strong>can't retain</strong> any heat energy. Average temperature on Mars is <span data-text-num></span> °<span data-temp-unit></span>. Coldest
+              <span data-text-num></span> °<span data-temp-unit></span>. Warmest
+              <span data-text-num></span> °<span data-temp-unit></span>.
+              </div>
             </div>
 
-            <div class="unit">
-              <label for="cel">°C</label>
-              <input type="radio" id="cel" name="unit" checked>
-              <!-- when unit__toggle is clicked
-                   checkbox needs to change -->
-              <button id="unit-toggle" class="unit__toggle" data-unit-toggle></button>
-              <label for="fah">°F</label>
-              <input type="radio" id="fah" name="unit">
-            </div> 
+            <div class="unit-wrap">
+              <div class="unit">
+                <label for="cel">°C</label>
+                <input type="radio" id="cel" name="unit" checked>
+                <!-- when unit__toggle is clicked
+                     checkbox needs to change -->
+                <button id="unit-toggle" class="unit__toggle" data-unit-toggle></button>
+                <label for="fah">°F</label>
+                <input type="radio" id="fah" name="unit">
+              </div> 
+            </div>
             
           </div>
         </div>
-        <div id="bottom" class="bottom">
-          <div id="open" class="previous__open"><span>&#8593;</span></div>
-          <div class="previous">
-            <h2 class="previous__title">Previous 7 days</h2>
-            <div id="previous-sols" class="previous__wrap">
-              <template id="previous-sols-template">
-                <div class="block">
-                  <p class="block__sol">Sol <span id="previous-sol"></span></p>
-                <p class="block__date"><span id="previous-date"></p>
-                <p class="block__temp">
-                  High: <span id="previous-maxTemp"></span>
-                   °<span data-temp-unit></span>
-                    <br />
-                  Low: <span id="previous-minTemp"></span>
-                   °<span data-temp-unit></span>
-                </p>
-                <div id="previous-button" class="block__btn">more</div>
-                </div>
-              </template>
+        <div class="bottom-wrap">
+          <div id="bottom" class="bottom">
+            <div id="open" class="previous__open"><span>&#8593;</span></div>
+            <div class="previous">
+              <h2 id="previous-title" class="previous__title">Previous 7 days</h2>
+              <div id="previous-sols" class="previous__wrap">
+                <template id="previous-sols-template">
+                  <div class="block">
+                    <p class="block__sol">Sol <span id="previous-sol"></span></p>
+                  <p class="block__date"><span id="previous-date"></p>
+                  <p class="block__temp">
+                    High: <span id="previous-maxTemp"></span>
+                     °<span data-temp-unit></span>
+                      <br />
+                    Low: <span id="previous-minTemp"></span>
+                     °<span data-temp-unit></span>
+                  </p>
+                  <div id="previous-button" class="block__btn">more</div>
+                  </div>
+                </template>
+              </div>
             </div>
           </div>
         </div>

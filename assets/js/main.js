@@ -86,6 +86,9 @@ function displayPreviousSols(sols) {
       .addEventListener("click", () => {
         selectedSolIndex = index;
         displaySelectedSol(sols);
+        if (window.innerWidth < 950) {
+          toggleBottom();
+        }
       });
     previousSolsContainer.appendChild(solContainer);
   });
@@ -160,9 +163,36 @@ function isMetric() {
   return metricRadio.checked;
 }
 
-document.getElementById("open").addEventListener("click", function () {
+function toggleBottom() {
   document.getElementById("bottom").classList.toggle("bottom-open");
   document
     .querySelector("#open span")
     .classList.toggle("previous__open-rotate");
+  document.getElementById("previous-title").classList.toggle("hide");
+}
+
+document.getElementById("open").addEventListener("click", function () {
+  toggleBottom();
 });
+document
+  .getElementById("previous-title")
+  .addEventListener("click", function () {
+    toggleBottom();
+  });
+
+window.addEventListener("load", function (event) {
+  const loader = document.getElementById("loader");
+  fadeOut(loader);
+});
+
+function fadeOut(el) {
+  el.style.opacity = 1;
+
+  (function fade() {
+    if ((el.style.opacity -= 0.1) < 0) {
+      el.style.display = "none";
+    } else {
+      requestAnimationFrame(fade);
+    }
+  })();
+}
